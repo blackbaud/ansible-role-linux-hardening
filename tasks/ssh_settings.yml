@@ -1,0 +1,76 @@
+---
+#******************************************************************************
+# Role: linux-hardening
+# File: tasks/ssh_settings.yml
+#******************************************************************************
+
+# Include Variables Files
+#******************************************************************************
+- name: Set Permissions on /etc/ssh/sshd_config
+  file:
+    path: /etc/ssh/sshd_config
+    state: file
+    mode: 0600
+    owner: root
+    group: root
+
+- name: Disable X11 Forwarding
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: '^X11Forwarding'
+    line: 'X11Forwarding no'
+
+- name: Set SSH MaxAuthTries to 4 or less
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: '^MaxAuthTries'
+    line: 'MaxAuthTries 6'
+
+- name: Disable SSH Root Login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin no'
+
+- name: Disable SSH Root Login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: '^PermitUserEnvironment'
+    line: 'PermitUserEnvironment no'
+
+- name: Use Only Approved Cipher in Counter Mode
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: '^Ciphers'
+    line: 'Ciphers aes128-ctr,aes192-ctr,aes256-ctr'
+
+- name: Set Idle Timeout Interval for User Login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: '^ClientAliveInterval'
+    line: 'ClientAliveInterval 300'
+
+- name: Set Idle Timeout Interval for User Login
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: '^ClientAliveCountMax'
+    line: 'ClientAliveCountMax 0'
+
+- name: Set SSH Banner
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    state: present
+    regexp: '^#Banner'
+    line: 'Banner /etc/issue.net'
+
+- name: Reload ssh
+  command: /bin/true
+  notify:
+    - reload ssh

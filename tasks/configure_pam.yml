@@ -1,0 +1,38 @@
+---
+#******************************************************************************
+# Role: linux-hardening
+# File: tasks/configure_pam.yml
+#******************************************************************************
+- name: Set Password Requirement Parameters Using pam_cracklib (Install)
+  package:
+    name: "{{ cracklib_package }}"
+    state: present
+
+- name: Set Password Requirement Parameters Using pam_cracklib (Configure)
+  lineinfile:
+    dest: "{{ pam_password_file }}"
+    regexp: "pam_cracklib.so"
+    line: "password required pam_cracklib.so try_first_pass retry=3 minlen=14 dcredit=-1 ucredit=-1 ocredit=-1 lcredit=-1"
+    state: present
+
+- name: Set Lockout for Failed Password Attempts
+  lineinfile:
+    dest: '/etc/pam.d/login'
+    regexp: "pam_tally2.so"
+    line: "auth required pam_tally2.so onerr=fail audit silent deny=5 unlock_time=900"
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Limit Password Reuse
+  lineinfile:
+    dest: "{{ pam_password_file }}"
+    regexp: "remember=5"
+    line: "password sufficient pam_unix.so remember=5"
+    state: present
+
+- name: Restrict Access to the su Command
+  lineinfile:
+    dest: /etc/pam.d/su
+    regexp: 'remember=5'
+    line: 'auth            required        pam_wheel.so use_uid'
+    state: present

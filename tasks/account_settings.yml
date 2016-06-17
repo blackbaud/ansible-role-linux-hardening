@@ -1,0 +1,29 @@
+---
+#******************************************************************************
+# Role: linux-hardening
+# File: tasks/account_settings.yml
+#******************************************************************************
+- name: Set Password Expiration Days
+  lineinfile:
+    dest: '/etc/login.defs'
+    regexp: "PASS_MAX_DAYS"
+    line: "PASS_MAX_DAYS 90"
+    state: present
+
+- name: Set Password Expiration Days
+  lineinfile:
+    dest: '/etc/login.defs'
+    regexp: "PASS_MIN_DAYS"
+    line: "PASS_MIN_DAYS 7"
+    state: present
+
+- name: Disable System Accounts
+  command: /usr/sbin/usermod -s /usr/sbin/nologin libuuid
+  when: ansible_distribution == "Ubuntu"
+
+- name: Set Default umask for Users
+  lineinfile:
+    dest: '/etc/login.defs'
+    regexp: "UMASK"
+    line: "UMASK 077"
+    state: present

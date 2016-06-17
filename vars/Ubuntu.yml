@@ -1,0 +1,11 @@
+---
+#******************************************************************************
+# Role: linux-hardening
+# File: vars/Ubuntu.yml
+#******************************************************************************
+ntp_package: ntp
+ntp_service: ntp
+ssh_service: ssh
+grubcfg_location: /boot/grub/grub.cfg
+cracklib_package: libpam-cracklib
+pam_password_file: /etc/pam.d/common-password

@@ -1,0 +1,20 @@
+galaxy_info:
+  author: Mark Honomichl
+  description: Ansible for Hardening a Linux Host
+  company: Blackbaud
+  license: MIT
+  min_ansible_version: 1.2
+  platforms:
+  - name: EL
+    versions:
+    - all
+  - name: Amazon
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  galaxy_tags:
+    - security
+    - linux
+dependencies: []

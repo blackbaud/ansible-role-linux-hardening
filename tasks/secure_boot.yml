@@ -1,0 +1,17 @@
+---
+#******************************************************************************
+# Role: linux-hardening
+# File: tasks/secure_boot.yml
+#******************************************************************************
+- name: Set Permissions on bootloader config
+  file:
+    path: "{{ grubcfg_location }}"
+    state: file
+    mode: og-rwx
+
+- name: Set Boot Loader Password
+  lineinfile:
+    dest: "{{ grubcfg_location }}"
+    state: present
+    regexp: '^password'
+    line: 'password --md5 $1$CfYsh$ZZudk4yi.QMRzkj76jLOR.'

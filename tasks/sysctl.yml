@@ -1,0 +1,27 @@
+---
+#******************************************************************************
+# Role: linux-hardening
+# File: tasks/sysctl.yml
+#******************************************************************************
+- name: Recommended sysctl
+  sysctl:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    state: present
+    reload: no
+    ignoreerrors: yes
+  with_items: "{{ hardening_sysctl }}"
+
+- name: Remove sysctl
+  sysctl:
+    name: "{{ item.name }}"
+    state: absent
+    reload: no
+    ignoreerrors: yes
+  with_items: "{{ remove_sysctl }}"
+
+- name: Reload Sysctl
+  command: /bin/true
+  notify:
+    - reload sysctl.conf
+    - flush routes

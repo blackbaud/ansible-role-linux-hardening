@@ -1,0 +1,20 @@
+---
+#******************************************************************************
+# Role: linux-hardening
+# File: handlers/main.yml
+#******************************************************************************
+- name: restart ntp
+  service:
+    name: "{{ ntp_service }}"
+    state: restarted
+
+- name: restart ssh
+  service:
+    name: "{{ ssh_service}}"
+    state: restarted
+
+- name: reload sysctl.conf
+  command: /sbin/sysctl -p
+
+- name: flush routes
+  command: /sbin/sysctl -w net.ipv4.route.flush=1

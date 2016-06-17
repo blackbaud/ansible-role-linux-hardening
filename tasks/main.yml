@@ -1,0 +1,39 @@
+---
+#******************************************************************************
+# Role: linux-hardening
+# File: tasks/main.yml
+#******************************************************************************
+
+# Include Variables Files
+#******************************************************************************
+- name: Include OS Specific Variables
+  include_vars: "{{ ansible_distribution }}.yml"
+
+# Update the Packages to the latest
+#******************************************************************************
+- name: Update all packages
+  package:
+    name: "*"
+    state: latest
+  when: ansible_distribution != "Ubuntu"
+  tags: update_os
+
+- name: Update Ubuntu
+  apt:
+    upgrade: dist
+  when: ansible_distribution == "Ubuntu"
+  tags: update_os
+
+# Include the individual tasks files
+#******************************************************************************
+- include: "hostname.yml"
+- include: "secure_boot.yml"
+- include: "ssh_settings.yml"
+- include: "configure_pam.yml"
+- include: "account_settings.yml"
+- include: "misc.yml"
+- include: "ntp.yml"
+- include: "cron.yml"
+- include: "core_dumps.yml"
+- include: "sysctl.yml"
+- include: "kernel_modules.yml"

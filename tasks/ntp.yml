@@ -1,0 +1,19 @@
+---
+#******************************************************************************
+# Role: linux-hardening
+# File: tasks/ntp.yml
+#******************************************************************************
+- name: Configure NTP - Install Package
+  package:
+    name: ntp
+    state: present
+  when: ansible_distribution == "Ubuntu"
+
+- name: Configure NTP - Update Config File
+  replace:
+    dest: /etc/ntp.conf
+    regexp: 'ubuntu.pool.ntp'
+    replace: 'amazon.pool.ntp'
+  notify:
+    - restart ntp
+  when: ansible_distribution == "Ubuntu"

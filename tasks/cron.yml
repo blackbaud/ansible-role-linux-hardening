@@ -1,0 +1,66 @@
+---
+#******************************************************************************
+# Role: linux-hardening
+# File: tasks/cron.yml
+#******************************************************************************
+- name: Set User/Group Owner and Permission on /etc/crontab
+  file:
+    path: /etc/crontab
+    state: file
+    mode: og-rwx
+
+- name: Set User/Group Owner and Permission on /etc/cron.hourly
+  file:
+    path: /etc/cron.hourly
+    state: directory
+    mode: og-rwx
+
+- name: Set User/Group Owner and Permission on /etc/cron.daily
+  file:
+    path: /etc/cron.daily
+    state: directory
+    mode: og-rwx
+
+- name: Set User/Group Owner and Permission on /etc/cron.weekly
+  file:
+    path: /etc/cron.weekly
+    state: directory
+    mode: og-rwx
+
+- name: Set User/Group Owner and Permission on /etc/cron.monthly
+  file:
+    path: /etc/cron.monthly
+    state: directory
+    mode: og-rwx
+
+- name: Set User/Group Owner and Permission on /etc/cron.d
+  file:
+    path: /etc/cron.d
+    state: directory
+    mode: og-rwx
+
+- name: Restrict cron to Authorized Users (Remove cron.deny)
+  file:
+    path: /etc/cron.deny
+    state: absent
+
+- name: Restrict at to Authorized Users (Remove at.deny)
+  file:
+    path: /etc/at.deny
+    state: absent
+
+- name: Restrict at to Authorized Users
+  file:
+    path: /etc/at.allow
+    state: touch
+    mode: og-rwx
+    owner: root
+    group: root
+
+- name: Restrict cron to Authorized Users
+  file:
+    path: /etc/cron.allow
+    state: touch
+    mode: og-rwx
+    owner: root
+    group: root

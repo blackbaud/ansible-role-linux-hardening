@@ -1,0 +1,71 @@
+---
+#******************************************************************************
+# Role: linux-hardening
+# File: tasks/kernel_modules.yml
+#******************************************************************************
+- name: Disable DCCP
+  lineinfile:
+    dest: /etc/modprobe.d/CIS.conf
+    state: present
+    create: yes
+    line: "install dccp /bin/true"
+
+- name: Disable SCTP
+  lineinfile:
+    dest: /etc/modprobe.d/CIS.conf
+    state: present
+    line: "install sctp /bin/true"
+
+- name: Disable RDS
+  lineinfile:
+    dest: /etc/modprobe.d/CIS.conf
+    state: present
+    line: "install rds /bin/true"
+
+- name: Disable TIPC
+  lineinfile:
+    dest: /etc/modprobe.d/CIS.conf
+    state: present
+    line: "install tipc /bin/true"
+
+- name: Disable cramfs
+  lineinfile:
+    dest: /etc/modprobe.d/CIS.conf
+    state: present
+    line: "install cramfs /bin/true"
+
+- name: Disable freevxfs
+  lineinfile:
+    dest: /etc/modprobe.d/CIS.conf
+    state: present
+    line: "install freevxfs /bin/true"
+
+- name: Disable hfs
+  lineinfile:
+    dest: /etc/modprobe.d/CIS.conf
+    state: present
+    line: "install hfs /bin/true"
+
+- name: Disable hfsplus
+  lineinfile:
+    dest: /etc/modprobe.d/CIS.conf
+    state: present
+    line: "install hfsplus /bin/true"
+
+- name: Disable jffs2
+  lineinfile:
+    dest: /etc/modprobe.d/CIS.conf
+    state: present
+    line: "install jffs2 /bin/true"
+
+- name: Disable squashfs
+  lineinfile:
+    dest: /etc/modprobe.d/CIS.conf
+    state: present
+    line: "install squashfs /bin/true"
+
+- name: Disable udf
+  lineinfile:
+    dest: /etc/modprobe.d/CIS.conf
+    state: present
+    line: "install udf /bin/true"

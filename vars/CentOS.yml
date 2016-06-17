@@ -1,0 +1,11 @@
+---
+#******************************************************************************
+# Role: linux-hardening
+# File: vars/CentOS.yml
+#******************************************************************************
+ntp_package: ntp
+ntp_service: ntpd
+ssh_service: sshd
+grubcfg_location: /boot/grub2/grub.cfg
+cracklib_package: cracklib
+pam_password_file: /etc/pam.d/system-auth

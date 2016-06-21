@@ -1,6 +1,6 @@
 linux-hardening
 ===============
-[![status](https://travis-ci.org/MarsDominion/linux-hardening.svg?branch=master)](https://travis-ci.org/MarsDominion/linux-hardening)
+[![status](https://travis-ci.org/blackbaud/ansible-role-linux-hardening.svg?branch=master)](https://travis-ci.org/blackbaud/ansible-role-linux-hardening)
 
 This role hardens linux hosts (Centos, Ubuntu, and Amazon Linux).  It follows the CIS standards, although it doesn't do everything that is recommended.
 

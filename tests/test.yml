@@ -3,4 +3,4 @@
   remote_user: root
   become: true
   roles:
-    - linux-hardening
+    - ansible-role-linux-hardening

@@ -25,7 +25,7 @@ script:
   # Basic role syntax check
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
-  # Verify the Role works by running it, but skip the package updates as they take too long
+  # Verify the Role works by running it, but skip the package updates as they cause travis to time out
   - ansible-playbook test/test.yml -i test/inventory --skip-tags "update_os"
 
 notifications:

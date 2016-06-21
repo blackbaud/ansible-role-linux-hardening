@@ -26,7 +26,7 @@ script:
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
   # Verify the Role works by running it, but skip the package updates as they take too long
-  - ansible-playbook test/test.yml -i test/inventory --skip-tags "update_os"
+  - ansible-playbook test/test.yml -i test/inventory --skip-tags "update_os"b
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/

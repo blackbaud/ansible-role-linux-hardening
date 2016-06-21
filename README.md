@@ -22,14 +22,9 @@ There are no dependencies for this role.
 Installation Instructions
 -------------------------
 
-To install this role in your local ansible directory, create a file called requirements.yml in the base directory with the following:
-
-    # from GitHub
-    - src: https://github.com/blackbaud/ansible-linux-hardening
-
- Then run the ansible-galaxy command to add the role:
+To install this role in your local ansible directory, run the ansible-galaxy command to add the role:
  
-    $ ansible-galaxy install -r requirements.yml
+    $ ansible-galaxy install blackbaud.linux-hardening
 
 Example Playbook
 ----------------
@@ -38,7 +33,7 @@ Include the role in your playbook to harden your linux servers:
 
     - hosts: servers
       roles:
-         - ansible-role-linux-hardening
+         - blackbaud.linux-hardening
 
 License
 -------

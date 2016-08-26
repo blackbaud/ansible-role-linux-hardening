@@ -73,4 +73,4 @@
 - name: Reload ssh
   command: /bin/true
   notify:
-    - reload ssh
+    - restart ssh

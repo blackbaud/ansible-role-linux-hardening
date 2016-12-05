@@ -1,4 +1,4 @@
---
+---
 ntp_package: ntp
 ntp_service: ntpd
 ssh_service: sshd
